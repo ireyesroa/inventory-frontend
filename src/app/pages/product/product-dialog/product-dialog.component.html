@@ -1,0 +1,55 @@
+<div class="layout">
+
+    <div class="loyout__content">
+        <mat-form-field class="content__field">
+            <input matInput placeholder="Nombre" [(ngModel)]="product.productName">
+        </mat-form-field>
+
+        <mat-form-field class="content__field">
+            <input matInput placeholder="Sku" [(ngModel)]="product.sku">
+        </mat-form-field>
+
+        <mat-form-field class="content__field">
+            <input matInput placeholder="Precio" [(ngModel)]="product.unitPrice">
+        </mat-form-field>
+
+        <mat-form-field class="content__field">
+            <input matInput placeholder="Unidades" [(ngModel)]="product.unitInStock">
+        </mat-form-field>
+
+        <mat-form-field class="content__field">
+            <mat-select [(ngModel)]="product.discontinued" placeholder="Seleccione">
+                <mat-option [value]="true">Sí</mat-option>
+                <mat-option [value]="false">No</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-select placeholder="Categoria" [(value)]="category">
+                <mat-option *ngFor="let cat of categories" [value]="cat.categoryId">
+                    {{cat.categoryName}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-select placeholder="Proveedor" [(value)]="supplier">
+                <mat-option *ngFor="let pro of suppliers" [value]="pro.supplierId">
+                    {{pro.companyName}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+
+        <button id="buttonUpload" mat-button color="primary" onclick="document.getElementById('fileUpload').click();">Seleccionar archivo</button>
+
+        <div class=""></div>
+        <button mat-raised-button color="secundary" (click)="create()">Crear</button>
+        <span class="example-spacer"></span>
+        <button mat-raised-button color="accent" (click)="cancel()">Cancelar</button>
+
+    </div>
+
+
+
+</div>

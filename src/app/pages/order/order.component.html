@@ -1,0 +1,68 @@
+<mat-toolbar>Ordenes</mat-toolbar>
+
+<router-outlet></router-outlet>
+
+<div class="example-header">
+    <mat-form-field>
+        <input matInput (keyup)="applyFilter($any($event.target).value)" placeholder="Buscar Orden por fecha">
+    </mat-form-field>
+</div>
+
+<mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="Id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.orderId}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="orderDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> fecha orden </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.orderDate}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="shipName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Enviado nombre </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.shipName}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="shipAddress">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Enviado dirección </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.shipAddress}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="shipCity">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Enviado ciudad </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.shipCity}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="shipCountry">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Enviado país </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.shipCountry}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="customerId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Cliente </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.customerId}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="employeeId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Empleado </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.employeeId}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="acciones">
+        <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button mat-button color="accent" [routerLink]="['edicion', row.orderId]">Ver</button>          
+        </mat-cell>
+      </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+
+<mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" [length]="countReg"
+    (page)="paginar($event)"></mat-paginator>
+
+<button mat-fab color="accent" style="float: right" (click)="openDialog()">
+    <mat-icon>create</mat-icon>
+</button>
